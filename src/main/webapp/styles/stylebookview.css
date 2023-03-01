@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&family=Playfair+Display&family=Roboto+Slab:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Merriweather', serif;
+  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto Slab', serif;  
+}
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #393d3f, #413745);
+}
+.container{
+  width: 550px;
+  height: 90vh;
+  background-color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 5px 10px rgba(242, 62, 62, 0.15);
+  
+}
+.container .title{
+  padding-top: 27px;
+  font-size: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 5px;
+}
+.content form .details{
+  display: block; 
+ flex-wrap: wrap;
+ justify-content:space-evenly;
+ margin: 12px 5px 10px 5px;
+ font-size: 18px;
+}
+.author{
+  font-size: 18px;
+  font-weight: 600;
+  height: 10vh;
+  background-color: rgb(152, 239, 239);
+}
+.publication{
+  font-size: 18px;
+  font-weight: 600;
+  height: 10vh;
+  background-color: beige;
+}.desc{
+  font-size: 18px;
+  font-weight: 600;
+  background-color: bisque;
+  height: 30vh;
+}
+.title{
+  height: 10vh;
+}
+ @media(max-width: 584px){
+  .container{
+   max-width: 100%;
+ }
+ form .details .input1{
+     margin-bottom: 25px;
+     width: 100%;   
+    }
+   form .category{
+     width: 100%;
+   }
+   .content form .details{
+     max-height: 500px;
+     overflow-y: scroll;
+     padding-top: 15px;
+   }
+   .details::-webkit-scrollbar{
+     width: 5px;
+   }
+   }
+   @media(max-width: 459px){
+   .container .content .category{
+     flex-direction: column;
+   }
+ }

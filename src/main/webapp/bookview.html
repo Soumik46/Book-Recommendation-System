@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/stylebookview.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title"><b><br>Book Title :<%=book.getTitle() %> </b></div>
+        </header>
+        <br>
+        <br>
+        <section>
+            <div class="content">
+                    <div class="details">
+                     <b> Author:</b>
+                    <div class="author">
+                           <h5><%=book.getAuthor() %></h5> 
+                    </div>
+                    <br>
+                    <b> Publication:</b>
+                    <div class="publication">
+                            <h6><%=book.getPublication() %></h6>
+                    </div>
+                    <br>
+                    <b> Description:</b>
+                    <div class="desc">
+                            
+                    </div>
+
+        </section>
+
+    </div>
+</body>
+
+
+</html>
