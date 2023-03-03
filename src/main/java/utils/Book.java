@@ -1,14 +1,16 @@
 package utils;
 
+import java.io.InputStream;
 import java.sql.Date;
 
 public class Book {
 	public int id,views;
  public String title,publication,author,category;
+ public InputStream file;
  public java.sql.Date date;
 
 public Book() {}
-public Book(int id,int views,String title,String publication,String author,String category)
+public Book(int id,int views,String title,String publication,String author,String category,InputStream file)
 {
 	this.id=id;
 	this.views=views;
@@ -16,6 +18,7 @@ public Book(int id,int views,String title,String publication,String author,Strin
 	this.publication= publication;
 	this.author=author;
 	this.category=category;
+	this.file=file;
 }
 
 public int getId() {
@@ -72,6 +75,11 @@ public void setDate(Date date) {
 	this.date=date;
 	
 }
-
+public InputStream getFile() {
+	return file;
+}
+public void setFile(InputStream file) {
+	this.file=file;
+}
  
 }

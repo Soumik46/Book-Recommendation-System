@@ -64,8 +64,16 @@ public class ShowByCategory extends HttpServlet {
 				request.setAttribute("booksRecommended",booksRecommended);
 				request.setAttribute("booksRecent",booksRecentlyAdded);
 				request.setAttribute("category", category);
+				if(!category.equalsIgnoreCase("all"))
+				{
 				RequestDispatcher dispatch=request.getRequestDispatcher("ShowByCategory.jsp");
 				dispatch.forward(request,response);
+				}
+				else
+				{
+					RequestDispatcher dispatch= request.getRequestDispatcher("ShowPageUser");
+					dispatch.forward(request, response);
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

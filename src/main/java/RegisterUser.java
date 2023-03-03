@@ -7,18 +7,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import utils.*
 ;/**
- * Servlet implementation class BookShowServlet
+ * Servlet implementation class RegisterUser
  */
-public class BookShowServlet extends HttpServlet {
+public class RegisterUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookShowServlet() {
+    public RegisterUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,27 +27,7 @@ public class BookShowServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=UTF-8");
-//		PrintWriter out=response.getWriter();
-		String user=request.getParameter("user");	
-		String pass= request.getParameter("pass");
-		System.out.println("From BookShow servlet");
-		System.out.println(user);
-		System.out.println(pass);
-		String bookId=request.getParameter("id");
-		System.out.println("Book id: "+bookId);
-		try {
-		Book book= BookDAO.getBookDetails(bookId);
-		request.setAttribute("book", book);
-		request.setAttribute("user", user);
-		request.setAttribute("pass", pass);
-		RequestDispatcher dispatcher= request.getRequestDispatcher("ShowBookDetails.jsp");
-		dispatcher.forward(request, response);
-		
-	}catch(Exception e) {
-		e.printStackTrace();
-	}
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -56,7 +35,33 @@ public class BookShowServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		 String name = request.getParameter("name");
+	        String phone = request.getParameter("phone");
+	        String email = request.getParameter("email");
+	        String password = request.getParameter("password");
+	       
+	        int res=0;
+
+	        Student student = new Student();
+	        student.setName(name);
+	        student.setPhone(phone);
+	        student.setEmail(email);
+	        student.setPassword(password);
+	       
+	        
+
+	        try {
+	            res=StudentDao.registerUser(student);
+	            if(res>0)
+	            {
+	            	System.out.println(res);
+	            	response.sendRedirect("index.html");
+	            	
+	            }
+	        } catch (Exception e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
 	}
 
 }

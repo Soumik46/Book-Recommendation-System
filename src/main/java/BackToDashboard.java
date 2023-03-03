@@ -7,18 +7,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class BackToDashboard
  */
-public class Login extends HttpServlet {
+public class BackToDashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public BackToDashboard() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,38 +25,29 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		
-		String user=request.getParameter("userID");
+		String user=request.getParameter("user");	
 		String pass= request.getParameter("pass");
-		System.out.println(user+"  "+pass);
-		String address = null;
-		if(Validate.isAdmin(user,pass))
+		System.out.println("From Back servlet");
+		System.out.println(user);
+		System.out.println(pass);
+		String address="";
+		if(Validate.isAdmin(user, pass))
 		{
-			
-//			admin	admin
-//			out.println("<h1>Welcome Admin"+ ;user+ "</h1>" );
-//			address="welcomeAdmin.jsp";
 			address="ShowPageAdmin";
 			request.setAttribute("user", user);
 			request.setAttribute("pass", pass);
 		}
-		else if(Validate.isUser(user,pass))
-		{
-//			user user
-//			out.println("<h1>Welcome User "+ user+ "</h1>" );
-//			address="welcomeUser.jsp";
+		else if(Validate.isUser(user, pass)) {
 			address="ShowPageUser";
 			request.setAttribute("user", user);
 			request.setAttribute("pass", pass);

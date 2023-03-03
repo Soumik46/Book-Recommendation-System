@@ -1,19 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-
+<html>
 <head>
-
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styleadmin1.css">
+<meta charset="ISO-8859-1">
+<title>Register New User</title>
+ <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/styleadmin1.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
+<div class="container">
         <header>
-            <div class="title"><b> <br>Create an admin Account</b></div>
+            <div class="title"><b> <br>Create New User</b></div>
         </header>
         <section>
             <div class="content">
-                <form method="post" action="AdminServlet">
+                <form method="post" action="RegisterUser">
                     <div class="details">
                             <div class="input1">
                             <label for="Enter User ID">
@@ -52,6 +55,4 @@
     </div>
     </form>
 </body>
-
-
 </html>

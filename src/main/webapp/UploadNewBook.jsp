@@ -11,13 +11,20 @@
 <title>Upload New Book</title>
 </head>
 <body>
+<% String user= (String)request.getAttribute("user");
+String pass=(String) request.getAttribute("pass");
+System.out.println("From UploadNewBook jsp:");
+System.out.println(user);
+System.out.println(pass);%>
 <div class="container">
         <header>
             <div class="title"><b> <br>Upload File</b></div>
         </header>
         <section>
             <div class="content">
-                <form action="AddBook" method="post" enctype="multipart/form-data">
+                <form action="AddBook" method="post" >
+                 <input type="hidden" value=<%=user %> name="user">
+			<input type="hidden" value=<%=pass %> name="pass">
                     <div class="details">
                           
                          <div class="Filter">
@@ -57,23 +64,7 @@
                                 required><br>
                         </div>
                         
-                        <div class="input1">
-                            <label for="Uplbutton">
-                            <label for="uplPdf">
-                                <span class="details">
-										<b><br>Upload File</b>
-                                </span>
-                            </label>
-                            <input type="file" id="uplPdf" name="pdf" accept=".pdf" />
-                         </div> 
-                        <!--  <div class="input1">
-                            <label for="Description">
-                                <span class="details"><b> <br>Description</b></span>
-                            </label>
-                            <textarea>
-                            </textarea> 
-                               
-                        </div> -->
+             
                         <div class="button">
                             <input type="submit"value="Upload">
                         </div>

@@ -54,6 +54,24 @@ body{
   background-color: bisque;
   height: 30vh;
 }
+.button{
+  border-color: black;
+  transform: scale(1.2);
+  background-color: #fff;
+  border-radius: 5px;
+  justify-content: space-between;
+  font-weight: 600;
+  padding: 2px 2px 2px 2px;
+}
+.download{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  padding-left: 217px;
+  padding-top: 8px;
+ 
+}
 .title{
   height: 10vh;
 }

@@ -28,6 +28,12 @@ button {
   padding-top: 5.15px;
   padding-right: 3px;
 }
+a{
+  text-decoration: none;
+  color:#393d3f;
+}
+
+
 .container{
   width: 95vw;
   height: 100vh;
@@ -57,6 +63,11 @@ button {
     background-color: #f3e9e5;
     border-radius: 4px;
     box-shadow: rgb(120, 120, 120);
+    display: flex;
+    justify-content: space-evenly;
+}
+.top:hover{
+  background-color: #f0cdc0;
 }
 .in-div{
 

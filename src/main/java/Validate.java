@@ -26,7 +26,7 @@ public class Validate {
 		try{
 		Connection con= getConnection();
 		PreparedStatement ps=con.prepareStatement(
-				"select * from admin where username=? and password=?");
+				"select * from admins where username=? and password=?");
 		ps.setString(1, user);
 		ps.setString(2, pass);
 		ResultSet rs=ps.executeQuery();
@@ -40,6 +40,10 @@ public class Validate {
 		
 		return st;
 }
+	
+	
+		
+		
 	public static boolean isUser(String user, String pass) 
 	{
 		boolean st=false;
@@ -47,7 +51,7 @@ public class Validate {
 		
 		Connection con= getConnection();
 		PreparedStatement ps=con.prepareStatement(
-				"select * from users where username=? and pass=?");
+				"select * from users2 where username=? and password=?");
 		ps.setString(1, user);
 		ps.setString(2, pass);
 		ResultSet rs=ps.executeQuery();

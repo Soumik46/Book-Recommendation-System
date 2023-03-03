@@ -22,6 +22,7 @@
 					<form action="ShowByCategory" method="post">
 						<select name="Categories" id="" onchange='this.form.submit()'>
 							<option selected disabled><b>Categories</b></option>
+							<option value="all"><b>All Categories</b></option>
 							<%List<String> categories= BookDAO.getAllCategories();
 							for(String category:categories){%>
 							<option value="<%=category%>"><b><%=category%></b></option>

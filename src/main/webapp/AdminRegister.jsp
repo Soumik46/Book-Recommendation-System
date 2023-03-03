@@ -1,12 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-
+<html>
 <head>
-
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styleadmin1.css">
+<meta charset="ISO-8859-1">
+<title>Register New Admin</title>
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/styleadmin1.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<% String user= (String)request.getAttribute("user");
+String pass=(String) request.getAttribute("pass");
+System.out.println("From AdminRegister jsp:");
+System.out.println(user);
+System.out.println(pass);%>
     <div class="container">
         <header>
             <div class="title"><b> <br>Create an admin Account</b></div>
@@ -40,6 +48,8 @@
                             </label>
                             <input type="password" placeholder="Password" name="password" id="Password" required><br>
                         </div>
+                          <input type="hidden" value=<%=user %> name="user">
+					<input type="hidden" value=<%=pass %> name="pass">
                         <div class="button">
                             <input type="submit"value="Submit">
                         </div>
@@ -52,6 +62,4 @@
     </div>
     </form>
 </body>
-
-
 </html>

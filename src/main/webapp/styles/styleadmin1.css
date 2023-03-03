@@ -19,7 +19,7 @@ body{
   width: 470px;
   height: 530px;
   background-color: #fff;
-  padding: 25px 30px;
+  padding: 25px 25px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
@@ -42,8 +42,8 @@ body{
   display: block; 
  flex-wrap: wrap;
  justify-content:space-evenly;
- margin: 12px 5px 10px 5px;
- font-size: 20px;
+ margin: 0px 5px 4px 0px;
+ font-size: 16px;
 }form .details .box{
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
@@ -54,10 +54,10 @@ form .input span.details{
   margin-bottom: 5px;
 } 
 .details .input1 input{
-  height: 45px;
+  height: 35px;
   width: 100%;
   outline: none;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 5px;
   padding-left: 15px;
   border: 1px solid #ccc;
@@ -125,13 +125,4 @@ form .button input:hover{
      flex-direction: column;
    }
  }
- .container .form-check{
-    color: black;
-    font-weight: 600;
-    font-size: 19px;
-    padding-top: 25px;
-    word-spacing: 0.2em;
- }
- .form-check-input{
-    margin-left:25px;
- }
+  

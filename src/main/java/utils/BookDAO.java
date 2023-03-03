@@ -1,5 +1,7 @@
 package utils;
 import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.sql.Date;
@@ -75,20 +77,25 @@ public class BookDAO {
 				book.setCategory(rs.getString(5));
 				book.setViews(rs.getInt(6));
 				book.setDate(rs.getDate(7));
+//				Blob blob= rs.getBlob(8);
+//				InputStream file= blob.getBinaryStream();
+//				book.setFile(file);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return book;
 	}
-	public static int addBook (String title, String author, String publication, String category,InputStream file) 
+	public static int addBook (String title, String author, String publication, String category) 
 	throws Exception{
 		// TODO Auto-generated method stub
 		Book book=new Book();
 		int id=-1;
+		int row=0;
+//		InputStream inputStream = new FileInputStream(new File(file));
 		Connection con= getConnection();
 		try {
-			PreparedStatement ps=con.prepareStatement("Insert into books_demo values(?,?,?,?,?,?,?,?)");
+			PreparedStatement ps=con.prepareStatement("Insert into books_demo values(?,?,?,?,?,?,?)");
 			// book_id int title string publication string
 			//author string category string views int added_date date
 			id=returnId();
@@ -100,12 +107,10 @@ public class BookDAO {
 			ps.setString(5, category);
 			ps.setInt(6, 0);
 			ps.setDate(7, date);
-			if(file!=null)
-			{
-				ps.setBlob(8, file);
-			}
 //			System.out.println(ps);
-			ps.executeUpdate();
+			row=ps.executeUpdate();
+			if(row>1)
+				System.out.println("Added new book");
 			
 		}catch(Exception e)
 		{
@@ -227,6 +232,14 @@ public static List<Book> getByCategoryRecentlyAdded(String category) throws Exce
 //		System.out.println(bk.getAuthor()+" \t" + bk.getTitle() + " \t" + bk.getCategory());
 //	}
 	return books;
+}
+public static boolean Download(String bookId) throws Exception {
+	Connection con=getConnection();
+	boolean st= false;
+	PreparedStatement ps=con.prepareStatement("Update books_demo set views=views+1 where book_id=?");
+	ps.setString(1, bookId);
+	st=ps.execute();
+	return st;
 }
 
 }

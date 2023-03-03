@@ -11,6 +11,11 @@
 <title>Book Details</title>
 </head>
 <body>
+<% String user= (String)request.getAttribute("user");
+String pass=(String) request.getAttribute("pass");
+System.out.println("From show book details jsp:");
+System.out.println(user);
+System.out.println(pass);%>
 <%
 Book book= (Book)request.getAttribute("book");
 %>
@@ -36,11 +41,25 @@ Book book= (Book)request.getAttribute("book");
                     <b> More Details</b>
                     <div class="desc">
                             <p>Added on: <%=book.getDate() %></p> 
-		 					<p>Viewed <%=book.getViews() %> times </p>
+                            <br><br>
+		 					<p>Downloads: <%=book.getViews() %> </p>
                     </div>
-
+                    
+                    <form action="Download" method="post">
+                    <input type="hidden" value=<%=user %> name="user">
+							<input type="hidden" value=<%=pass %> name="pass">
+                    <input type="hidden" value=<%=book.getId()%> name="bookId">
+                    <div class="download">
+                    <button type="submit"  class="button">
+                        Download
+                    </button>
+                	</div>
+                    </form>
+                    
         </section>
-
+  <form action="BackToDashboard" method="post"><input type="hidden" value=<%=user %> name="user">
+							<input type="hidden" value=<%=pass %> name="pass">
+							<input type="submit" value="Back"> </form>
     </div>
 </body>
 </html>

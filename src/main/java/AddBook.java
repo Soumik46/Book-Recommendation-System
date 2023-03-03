@@ -43,35 +43,49 @@ public class AddBook extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out= response.getWriter();
+		String user=request.getParameter("user");	
+		String pass= request.getParameter("pass");
+		System.out.println("From AddBook servlet");
+		System.out.println(user);
+		System.out.println(pass);
 		String title=request.getParameter("book_title");
 		String author=request.getParameter("book_author");
 		String publication=request.getParameter("book_publication");
 		String category=request.getParameter("book_category");
-//		System.out.println(Category);
+		System.out.println(title);
+		System.out.println(author);
+		System.out.println(publication);
+		System.out.println(category);
 		if(category.contentEquals("new category"))
 		{
 			category=request.getParameter("new_category_Name");
 //			System.out.println("New category: "+Category);
 		}
-		InputStream inputStream= null;
-		
-		String message= null;
-		//obtains the upload file part in this multipart request
-		Part filePart= request.getPart("pdf");
-		if(filePart!=null) {
-			//prints out information for debugging
-			System.out.println(filePart.getName());
-			System.out.println(filePart.getSize());
-			System.out.println(filePart.getContentType());
-			
-			//obtains input stream to upload file
-			inputStream= filePart.getInputStream();
-		}
+//		InputStream inputStream= null;
+//		
+//		String message= null;
+//		//obtains the upload file part in this multipart request
+//		Part filePart= request.getPart("pdf");
+//		if(filePart!=null) {
+//			//prints out information for debugging
+//			System.out.println(filePart.getName());
+//			System.out.println(filePart.getSize());
+//			System.out.println(filePart.getContentType());
+//			
+//			//obtains input stream to upload file
+//			inputStream= filePart.getInputStream();
+//		}
 		try {
-			int ID= BookDAO.addBook(title,author,publication,category,inputStream);
+			int ID= BookDAO.addBook(title,author,publication,category);
 //			request.setAttribute("id", ID);
-			RequestDispatcher dispatcher= request.getRequestDispatcher("BookShowServlet?id="+ID);
+			if(Validate.isAdmin(user, pass))
+			{
+				request.setAttribute("user", user);
+				request.setAttribute("pass", pass);
+				RequestDispatcher dispatcher= request.getRequestDispatcher("BookShowServlet?id="+ID);
 			dispatcher.forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

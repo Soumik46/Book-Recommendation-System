@@ -8,9 +8,14 @@
 <link rel="stylesheet" href="styles/styleuserview.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>User Home</title>
 </head>
 <body>
+<% String user= (String)request.getAttribute("user");
+String pass=(String) request.getAttribute("pass");
+System.out.println("From show page user jsp:");
+System.out.println(user);
+System.out.println(pass);%>
 	<div class="container">
 		<header>
 			<div class="align">
@@ -29,14 +34,6 @@
 						</select>
 						</form>
 					</div>
-					<!--  <div class="Filter">
-						<select name="stream" id="">
-							<option value="">Select Author</option>
-							<option value="2020-2024">abc</option>
-							<option value="2019-2023">def</option>
-							<option value="2021-2025">ghi</option>
-						</select>
-					</div> -->
 				</div>
 			</div>
 		</header>
@@ -50,12 +47,14 @@
 								<b>Top Recommended Books</b></span>
 							</label>
 							<div class="home-content"></div>
-							<%
+							 <%
 							List<Book> RecommendedBooks = BookDAO.getBooksRecommended();
 
 							for (Book bk : RecommendedBooks) {
 							%>
-							<a href="BookShowServlet?id=<%=bk.getId()%>">
+							<a id="auto-submit" href="BookShowServlet?id=<%=bk.getId()%>&user=<%=user%>&pass=<%=pass %>" )>
+							<!--  form daal autosubmit -->
+							
 								<div class="top">
 									<div class="in-div">
 										<b><%=bk.getTitle()%></b>
@@ -74,11 +73,11 @@
 									</b></span>
 								</label>
 
-								<%
+								 <%
 								List<Book> RecentBooks = BookDAO.getBooksRecentlyAdded();
 								for (Book bk : RecentBooks) {
 								%>
-								<a href="BookShowServlet?id=<%=bk.getId()%>">
+								<a id="auto-submit" href="BookShowServlet?id=<%=bk.getId()%>&user=<%=user%>&pass=<%=pass %>" )>
 								<div class="top">
 									<div class="in-div">
 										<b><%=bk.getTitle()%></b>

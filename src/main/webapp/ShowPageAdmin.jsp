@@ -8,35 +8,46 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/styleadminview.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Admin's Dashboard</title>
 </head>
 <body>
+<% String user= (String)request.getAttribute("user");
+String pass=(String) request.getAttribute("pass");
+System.out.println("From show page admin jsp:");
+System.out.println(user);
+System.out.println(pass);%>
     <div class="container">
         <header>
             <div class="align">
             <div class="title"><b>Book Recommendation</b></div>
-            <div class="horizontal"> 
-                <button type="submit">
+           <div class="horizontal">
+           <form action="AdminRegister" method="post">
+           <input type="hidden" value=<%=user %> name="user">
+			<input type="hidden" value=<%=pass %> name="pass">
+           <button type="submit">          
                     Register
                 </button>
-            <div class="Filter">      
-                <select name="Categories" id="">
-                  <option value=""><b>Categories</b></option>
-                  <option value="abc">abc</option>
-                  <option value="def">def</option>
-                  <option value="ghi">ghi</option>
-              </select>
-            </div>
-                    <div class="Filter">
-                    <select name="stream" id="">
-                      <option value="">Select Writer</option>
-                      <option value="abc">abc</option>
-                      <option value="def">def</option>
-                      <option value="ghi">ghi</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+                </form>
+           <form action="UploadNewBook" method="post">
+           <input type="hidden" value=<%=user %> name="user">
+			<input type="hidden" value=<%=pass %> name="pass">
+           <button type="submit">          
+                    Add New Book
+                </button>
+                </form>
+					<div class="Filter">
+					<form action="ShowByCategory" method="post">
+					
+						<select name="Categories" id="" onchange='this.form.submit()'>
+							<option selected disabled><b>Categories</b></option>
+							<%List<String> categories= BookDAO.getAllCategories();
+							for(String category:categories){%>
+							<option value="<%=category%>"><b><%=category%></b></option>
+							<%} %>
+						</select>
+						</form>
+					</div>
+				</div>
         </header>
                  
         <section>
@@ -50,20 +61,31 @@
                              <div class="home-content">
 
                         </div>
+                        
+							<form id="form" action="BookShowServlet" method="post">
+							<input type="hidden" value=<%=user %> name="user">
+							<input type="hidden" value=<%=pass %> name="pass">
+							</form>
+							
                         <%
 							List<Book> RecommendedBooks = BookDAO.getBooksRecommended();
 
 							for (Book bk : RecommendedBooks) {
 							%>
-							<a href="BookShowServlet?id=<%=bk.getId()%>">
-								<div class="top">
+							<a id="auto-submit" href="BookShowServlet?id=<%=bk.getId()%>&user=<%=user%>&pass=<%=pass %>" )>
+							<!--  form daal autosubmit -->
+							
+								<div class="top" >
+								
 									<div class="in-div">
 										<b><%=bk.getTitle()%></b>
 									</div>
 									<div class="in-div">
 										Author:
-										<%=bk.getAuthor()%></div>
-								</div>
+										<%=bk.getAuthor()%>
+										</div>
+									</div>	
+							
 							</a> <br>
 							<%
 							}
@@ -76,7 +98,7 @@
 								List<Book> RecentBooks = BookDAO.getBooksRecentlyAdded();
 								for (Book bk : RecentBooks) {
 								%>
-								<a href="BookShowServlet?id=<%=bk.getId()%>">
+								<a id="auto-submit" href="BookShowServlet?id=<%=bk.getId()%>&user=<%=user%>&pass=<%=pass %>" )>
 								<div class="top">
 									<div class="in-div">
 										<b><%=bk.getTitle()%></b>
@@ -98,7 +120,15 @@
         </section>
 
     </div>
-    </form>
+    <script>
+    function submitForm()
+    {
+    	
+    	console.log("Reached function");
+    	form= getElementById("form");
+    	form.submit();
+    }
+    </script>
 </body>
 
 </html>
