@@ -57,9 +57,10 @@ System.out.println(pass);%>
                         <!-- &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a href>Create New Account/Signup</a href> -->
                         </div>
                     </div>
+                    </form>
+                    </div>
         </section>
-
     </div>
-    </form>
+    
 </body>
 </html>

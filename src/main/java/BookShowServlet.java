@@ -29,7 +29,7 @@ public class BookShowServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-//		PrintWriter out=response.getWriter();
+		PrintWriter out=response.getWriter();
 		String user=request.getParameter("user");	
 		String pass= request.getParameter("pass");
 		System.out.println("From BookShow servlet");
@@ -37,7 +37,9 @@ public class BookShowServlet extends HttpServlet {
 		System.out.println(pass);
 		String bookId=request.getParameter("id");
 		System.out.println("Book id: "+bookId);
-		try {
+		if(Validate.isAdmin(user, pass) || Validate.isUser(user, pass))
+		{
+			try {
 		Book book= BookDAO.getBookDetails(bookId);
 		request.setAttribute("book", book);
 		request.setAttribute("user", user);
@@ -47,7 +49,14 @@ public class BookShowServlet extends HttpServlet {
 		
 	}catch(Exception e) {
 		e.printStackTrace();
+		}
+			
+		
 	}
+		else
+		{
+			out.println("Invalid user: Access Denied");
+		}
 		
 	}
 

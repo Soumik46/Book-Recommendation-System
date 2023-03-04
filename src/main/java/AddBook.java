@@ -82,8 +82,12 @@ public class AddBook extends HttpServlet {
 			{
 				request.setAttribute("user", user);
 				request.setAttribute("pass", pass);
-				RequestDispatcher dispatcher= request.getRequestDispatcher("BookShowServlet?id="+ID);
+				RequestDispatcher dispatcher= request.getRequestDispatcher("BookShowServlet?id="+ID+"&user="+user+"&pass="+pass);
 			dispatcher.forward(request, response);
+			}
+			else
+			{
+				out.println("Invalid user: Access Denied");
 			}
 			
 		} catch (Exception e) {

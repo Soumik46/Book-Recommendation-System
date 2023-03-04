@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import utils.*;
 import jakarta.servlet.RequestDispatcher;
@@ -50,7 +51,7 @@ public class AdminServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
 			}
-			if(res>0) {
+			if(res>0) {  
 				request.setAttribute("user", user);
 				request.setAttribute("pass", pass);
 				request.setAttribute("newAdmin", name);
